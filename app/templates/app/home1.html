@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static "app/css/home.css" %}">
+  </head>
+  <!-- view -->
+  <!-- ng-app attribute to use the module -->
+  <body ng-app="app.demo">
+    <!-- model data display and django template are same rep -->
+    {% verbatim %}
+    <div ng-controller="scrum">
+      <!-- {{person.name}} is {{person.age}} years old. -->
+      <div class="list" ng-repeat="list in data">
+        <h3>{{list.name}}</h3>
+          <ul>
+            <!-- <li ng-repeat="card in list.cards">{{card.title}}</li> -->
+            <li ng-repeat="card in list.cards">
+              <scrum-card></scrum-card>
+            </li>
+          </ul>
+          <div class="flex">
+            <input type="text" name="" value="" ng-model="new_title">
+            <button ng-click="add(list, new_title)">+</button>
+          </div>
+      </div>
+    </div>
+    {% endverbatim %}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+      <!-- same as verbatim letting django know its for angular -->
+    <script src="{% static "app/home.js" %}"></script>
+    <script src="{% static "app/card.directive.js" %}"></script>
+  </body>
+</html>
